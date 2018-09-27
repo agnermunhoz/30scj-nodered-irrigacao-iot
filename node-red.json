@@ -1,0 +1,270 @@
+[
+    {
+        "id": "92b4cf37.b27be",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "a6628ac2.68f2d8",
+        "type": "inject",
+        "z": "92b4cf37.b27be",
+        "name": "BeepOn",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 274,
+        "y": 48,
+        "wires": [
+            [
+                "c0e12590.4682c8"
+            ]
+        ]
+    },
+    {
+        "id": "63965764.4f1318",
+        "type": "inject",
+        "z": "92b4cf37.b27be",
+        "name": "BeepOff",
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 278,
+        "y": 107,
+        "wires": [
+            [
+                "c0e12590.4682c8"
+            ]
+        ]
+    },
+    {
+        "id": "c0e12590.4682c8",
+        "type": "arduino out",
+        "z": "92b4cf37.b27be",
+        "name": "Buzzer",
+        "pin": "12",
+        "state": "OUTPUT",
+        "arduino": "dc10a47a.bc3c28",
+        "x": 860,
+        "y": 104,
+        "wires": []
+    },
+    {
+        "id": "d8a83b58.5d83f8",
+        "type": "inject",
+        "z": "92b4cf37.b27be",
+        "name": "PumpOn",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 268,
+        "y": 259,
+        "wires": [
+            [
+                "10a1ba1d.35b426"
+            ]
+        ]
+    },
+    {
+        "id": "77e52499.abba9c",
+        "type": "inject",
+        "z": "92b4cf37.b27be",
+        "name": "PumpOff",
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 264,
+        "y": 321,
+        "wires": [
+            [
+                "10a1ba1d.35b426"
+            ]
+        ]
+    },
+    {
+        "id": "10a1ba1d.35b426",
+        "type": "arduino out",
+        "z": "92b4cf37.b27be",
+        "name": "Pump",
+        "pin": "11",
+        "state": "OUTPUT",
+        "arduino": "dc10a47a.bc3c28",
+        "x": 863,
+        "y": 292,
+        "wires": []
+    },
+    {
+        "id": "24e56c0b.fcc364",
+        "type": "mqtt in",
+        "z": "92b4cf37.b27be",
+        "name": "",
+        "topic": "agnerBuzzer",
+        "qos": "2",
+        "broker": "be067819.d71e28",
+        "x": 266,
+        "y": 163,
+        "wires": [
+            [
+                "c0e12590.4682c8"
+            ]
+        ]
+    },
+    {
+        "id": "2e96bc0b.c11104",
+        "type": "arduino in",
+        "z": "92b4cf37.b27be",
+        "name": "Umidade",
+        "pin": "0",
+        "state": "ANALOG",
+        "arduino": "dc10a47a.bc3c28",
+        "x": 254,
+        "y": 510,
+        "wires": [
+            [
+                "2720fcc4.f78e84"
+            ]
+        ]
+    },
+    {
+        "id": "85e638ca.2e6b38",
+        "type": "mqtt out",
+        "z": "92b4cf37.b27be",
+        "name": "",
+        "topic": "agnerUmidade",
+        "qos": "",
+        "retain": "",
+        "broker": "be067819.d71e28",
+        "x": 865,
+        "y": 602,
+        "wires": []
+    },
+    {
+        "id": "87942162.b67d7",
+        "type": "debug",
+        "z": "92b4cf37.b27be",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 693,
+        "y": 747,
+        "wires": []
+    },
+    {
+        "id": "2720fcc4.f78e84",
+        "type": "delay",
+        "z": "92b4cf37.b27be",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "20",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "5",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "x": 503,
+        "y": 566,
+        "wires": [
+            [
+                "85e638ca.2e6b38",
+                "87942162.b67d7",
+                "a2b292c.1d5c37"
+            ]
+        ]
+    },
+    {
+        "id": "8cb8f417.a229f8",
+        "type": "mqtt in",
+        "z": "92b4cf37.b27be",
+        "name": "",
+        "topic": "agnerPump",
+        "qos": "2",
+        "broker": "be067819.d71e28",
+        "x": 268,
+        "y": 386,
+        "wires": [
+            [
+                "10a1ba1d.35b426"
+            ]
+        ]
+    },
+    {
+        "id": "a2b292c.1d5c37",
+        "type": "function",
+        "z": "92b4cf37.b27be",
+        "name": "",
+        "func": "if (msg.payload <= 900) {\n    msg.payload = 0\n} else {\n    msg.payload = 1    \n}\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 692,
+        "y": 436,
+        "wires": [
+            [
+                "8ccad245.24d83"
+            ]
+        ]
+    },
+    {
+        "id": "8ccad245.24d83",
+        "type": "mqtt out",
+        "z": "92b4cf37.b27be",
+        "name": "",
+        "topic": "agnerPump",
+        "qos": "2",
+        "retain": "",
+        "broker": "be067819.d71e28",
+        "x": 881,
+        "y": 434,
+        "wires": []
+    },
+    {
+        "id": "dc10a47a.bc3c28",
+        "type": "arduino-board",
+        "z": "",
+        "device": "/dev/ttyACM0"
+    },
+    {
+        "id": "be067819.d71e28",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "",
+        "broker": "iot.eclipse.org",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    }
+]
